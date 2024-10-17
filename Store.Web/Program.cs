@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Store.Data.Context;
+using Store.Repository.Interfaces;
+using Store.Repository.UnitOfWork;
 using Store.Web.Helper;
 
 namespace Store.Web
@@ -16,6 +18,7 @@ namespace Store.Web
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
             builder.Services.AddDbContext<StoreDbContext>(options =>
 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -27,6 +30,7 @@ namespace Store.Web
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                
             }
 
             app.UseHttpsRedirection();
