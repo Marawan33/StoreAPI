@@ -14,7 +14,8 @@ namespace Store.Service.Services.Products.Dtos
         {
             CreateMap<Product, ProductDto>()
                 .ForMember(dest => dest.BrandName, option => option.MapFrom(src => src.Brand.Name))
-                .ForMember(dest => dest.TypeName, option => option.MapFrom(src => src.Type.Name));
+                .ForMember(dest => dest.TypeName, option => option.MapFrom(src => src.Type.Name))
+                .ForMember(dest => dest.ImageUrl, option => option.MapFrom<ProductImageResolve>());
             CreateMap<ProductBrand, BrandTypeDetailsDto>();
             CreateMap < ProductType,BrandTypeDetailsDto>();
         }
