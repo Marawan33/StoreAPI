@@ -13,6 +13,8 @@ namespace Store.Repository.Specification.ProductSpecs
         public ProductWithCountSpecifications(ProductSpecification specs) :
             base(prod=>(!specs.BrandId.HasValue||prod.BrandId==specs.BrandId.Value)
             &&(!specs.TypeId.HasValue||prod.TypeId==specs.TypeId.Value)
+           && (string.IsNullOrEmpty(specs.Search) || prod.Name.Trim().ToLower().Contains(specs.Search)
+        )
             )
         {
         }

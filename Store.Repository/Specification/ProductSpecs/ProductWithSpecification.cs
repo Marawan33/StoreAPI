@@ -10,7 +10,9 @@ namespace Store.Repository.Specification.ProductSpecs
     public class ProductWithSpecification : BaseSpecification<Product>
     {
         public ProductWithSpecification(ProductSpecification specs) : base(prod => (!specs.BrandId.HasValue || prod.BrandId == specs.BrandId.Value)
-        && (!specs.TypeId.HasValue || prod.TypeId == specs.TypeId.Value))
+        && (!specs.TypeId.HasValue || prod.TypeId == specs.TypeId.Value)
+        && (string.IsNullOrEmpty(specs.Search)||prod.Name.Trim().ToLower().Contains(specs.Search)
+        ))
         {
             AddInclude(x => x.Brand);
             AddInclude(x => x.Type);

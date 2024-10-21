@@ -23,5 +23,13 @@ namespace Store.Repository.Specification.ProductSpecs
             set => _pageSize = (value > MAXPAGESIZE) ? int.MaxValue : value;
         }
 
+        private string? _search;
+
+        public string? Search
+        {
+            get => _search;
+            set => _search = value?.Trim().ToLower();
+        }
+
     }
 }
