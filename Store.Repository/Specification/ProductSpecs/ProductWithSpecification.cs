@@ -10,11 +10,12 @@ namespace Store.Repository.Specification.ProductSpecs
     public class ProductWithSpecification : BaseSpecification<Product>
     {
         public ProductWithSpecification(ProductSpecification specs) : base(prod => (!specs.BrandId.HasValue || prod.BrandId == specs.BrandId.Value)
-        && (!specs.TypeId.HasValue || prod.TypeId == specs.BrandId.Value))
+        && (!specs.TypeId.HasValue || prod.TypeId == specs.TypeId.Value))
         {
             AddInclude(x => x.Brand);
             AddInclude(x => x.Type);
             AddOrderBy(x => x.Name);
+            ApplyPagination(specs.PageSize * (specs.PageIndex-1),specs.PageSize);
 
             if(!string.IsNullOrEmpty(specs.Sort))
             {
