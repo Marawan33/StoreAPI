@@ -29,7 +29,7 @@ namespace Store.Web.Controllers
             => Ok(await _productService.GetAllProductsAsync(input));
 
         [HttpGet]
-        public async Task<ActionResult<ProductDto>> GetProductById(int? id)
+        public async Task<ActionResult<ProductDto>> GetProductById([FromQuery]int? id)
             => Ok(await _productService.GetByIdAsync(id));
     }
 }
