@@ -37,6 +37,7 @@ namespace Store.Web
                 return ConnectionMultiplexer.Connect(configuration);
             });
             builder.Services.ApplicationServices();
+            builder.Services.AddIdentityService();
             var app = builder.Build();
             
 
